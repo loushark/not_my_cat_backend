@@ -4,10 +4,10 @@ require('dotenv/config')
 
 const db = require('./config/db')
 
-const users = require('./routes/api/users')
+const usersRoute = require('./routes/api/users')
 
 // assign url to users routes
-app.use('/api/users', users)
+app.use('/api/users', usersRoute)
 
 // connect to mongoDB
 db.connect();
