@@ -2,13 +2,13 @@
 
 - `npm init`
 - npm install dependancies
-  - `dotenv` for accessing enviroment data needed to connect to Mongodb
-  - `express` for the router functions
-  - `mongoose` for connecting and carrying out actions on Mongodb
-  - `supertest` for testing requests to the router
-  - `jest` as a testing framework, coverage and more
-  - `nodemon` to rolling restart the server on saved changes
-  - `eslint` as a linter
+  - [x] `dotenv` for accessing enviroment data needed to connect to Mongodb
+  - [x] `express` for the router functions
+  - [x] `mongoose` for connecting and carrying out actions on Mongodb
+  - [x] `supertest` for testing requests to the router
+  - [x] `jest` as a testing framework, coverage and more
+  - [x] `nodemon` to rolling restart the server on saved changes
+  - [x] `eslint` as a linter
   
 - updated scripts in the package.json
 ```json
