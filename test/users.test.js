@@ -5,21 +5,27 @@ const User = require("../models/User")
 
 testSetup()
 
-test("GET /users", async () =>{
-  const user = await User.create({
-    username: "catlover69",
-    email: "99cats@notyours.com",
-    password: "password1",
-    dateAdded: "11/05/2021"
-  })
-  await request(app)
-  .get("/api/users")
-  .expect(200)
-  .then((response) =>{
-    console.log(response)
-    expect(response.body[1]._id).toBe(user.id)
-  })
-})
+let testData = {
+                "username": "catlover69",
+                "email": "99cats@notyours.com",
+                "password": "password1",
+                }
+
+// test("GET /users", async () =>{
+//   const user = await User.create({
+//     username: "catlover69",
+//     email: "99cats@notyours.com",
+//     password: "password1",
+//     dateAdded: "11/05/2021"
+//   })
+//   await request(app)
+//   .get("/api/users")
+//   .expect(200)
+//   .then((response) =>{
+//     console.log(response)
+//     expect(response.body[1]._id).toBe(user.id)
+//   })
+// })
 
 
 describe('get users', () => {
@@ -33,10 +39,22 @@ describe('get users', () => {
 })
 
 describe('post users', () => {
-  it('returns status code 201', async () => {
+  it('returns status code 201 and the user object', async () => {
     await request(app).post('/api/users')
-    .then((request) => {
-      expect(request.status).toEqual(201)
+    .send(testData)
+    .then((response) => {
+      expect(response.status).toEqual(201)
+      expect(response.body).toEqual(expect.objectContaining(testData))
+    })
+  })
+
+  it('return status 500 and error message', async () => {
+    await request(app).post('/api/users')
+    .send({ "username": "catlover69"} )
+    .then((response) => {
+      expect(response.status).toEqual(500)
+      expect(response.body).toEqual(expect.objectContaining( { "_message": "User validation failed" }))
     })
   })
 })
+

@@ -32,6 +32,7 @@
     "nodemon": "^2.0.7"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testTimeout": 10000
   }
 }

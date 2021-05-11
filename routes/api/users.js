@@ -11,7 +11,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  res.status(201).send()
+  User.create(req.body)
+  .then(user => {
+    res.status(201).json(user)
+  })
+  .catch(error => {
+    res.status(500).json(error)
+  })
 });
 
 module.exports = router;
