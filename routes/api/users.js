@@ -10,6 +10,21 @@ router.get('/', (req, res) => {
   })
 });
 
+router.get('/:username', (req, res) => {
+  User.findOne({ username: req.params.username })
+  .then(user => {
+    if (user) {
+      res.status(200).json(user)
+    }
+    else {
+      res.status(404).json({ message: "User not found" })
+    }
+  })
+  // .catch(error => {
+  //   res.status(404).json(error)
+  // })
+});
+
 router.post('/', (req, res) => {
   User.create(req.body)
   .then(user => {

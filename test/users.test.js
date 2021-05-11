@@ -38,6 +38,22 @@ describe('get users', () => {
   })
 })
 
+describe('get users by username', () => {
+  it('returns status code 200 and users array', async () => {
+    await request(app).get('/api/users/catlover69')
+    .then((response) => {
+      expect(response.status).toEqual(200)
+      expect(response.body).toEqual(expect.objectContaining( { "username": "catlover69", "password": "password1" }))
+    })
+  })
+  it('return status 500 and error message', async () => {
+    await request(app).get('/api/users/doglover10330')
+    .then((response) => {
+      expect(response.body.message).toEqual("User not found")
+    })
+  })
+})
+
 describe('post users', () => {
   it('returns status code 201 and the user object', async () => {
     await request(app).post('/api/users')
@@ -57,4 +73,3 @@ describe('post users', () => {
     })
   })
 })
-
