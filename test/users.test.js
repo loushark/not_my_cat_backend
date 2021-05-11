@@ -5,10 +5,13 @@ const testSetup = require('./helper/dbHelper')
 testSetup()
 
 describe('get users', () => {
-  it('returns status code 200', async () => {
-    await request(app)
-      .get('/api/users')
-      .expect(200)
+  it('returns status code 200 and users array', async () => {
+    await request(app).get('/api/users')
+    .then((response) => {
+      console.log(response)
+      expect(response.status).toEqual(200)
+      expect(response.body[0]).toEqual(expect.objectContaining( { "username": "catlover69" }))
+    })
   })
 })
 

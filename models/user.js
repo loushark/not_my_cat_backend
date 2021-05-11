@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true},
   email: { type: String, required: true},
   password: { type: String, required: true},
-  dateAdded: { type: date, default: Date.now}
+  dateAdded: { type: Date, default: Date.now}
 });
 
 module.exports = user = new mongoose.model('User', userSchema);
