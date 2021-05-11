@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// connects to the mongodb using the uri in the .env 
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, 
@@ -15,10 +16,12 @@ const connect = async () => {
   }
 }
 
+// returns a connection to the db for other functions to use
 const connection = () => {
   return mongoose.connection.db
 }
 
+// disconnects the database from the express server
 const disconnect = async () => {
   try {
     await mongoose.disconnect();

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/user');
 
+// GET /api/users  -returns all users
 router.get('/', (req, res) => {
   User.find()
   .then(users => {
@@ -10,6 +11,7 @@ router.get('/', (req, res) => {
   .catch(error => res.json(error))
 });
 
+// GET /api/users/:username  -returns a user of the specified username
 router.get('/:username', (req, res) => {
   User.findOne({ username: req.params.username })
   .then(user => {
@@ -23,6 +25,7 @@ router.get('/:username', (req, res) => {
   .catch(error => res.json(error))
 });
 
+// POST /api/users  -creates a new user and returns the user obj
 router.post('/', (req, res) => {
   User.create(req.body)
   .then(user => {
