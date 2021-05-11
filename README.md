@@ -66,3 +66,9 @@
 
 - Using `mongoose` to create functions to connect to and disconnect from the database. 
 - We use the env variable `MONGO_URI` which we access using `dotenv` to connect to the database and make sure that our credentials are not pushed to github.
+
+### test/helper/dbHelper.js
+
+- This helper file allows the tests to connect to the database use a `beforeAll` and `afterAll` function. 
+- Also there are `beforeEach` and `afterEach` functions that create stand up test data and tear it down so that each of the tests can be carried out in a clean environment. 
+- This file calls on `testData.json` that contains the data for the test database seeding.
