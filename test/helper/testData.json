@@ -1,0 +1,24 @@
+{ 
+  "userData": [
+    {
+      "username": "catperson",
+      "email": "catperson@notyours.com",
+      "password": "password1"
+    },
+    {
+      "username": "ilikecats",
+      "email": "ilikecats@notyours.com",
+      "password": "password1"
+    },
+    {
+      "username": "showmethecats",
+      "email": "showmethecats@notyours.com",
+      "password": "password1"
+    },
+    {
+      "username": "wheresthatcat",
+      "email": "wheresthatcat@notyours.com",
+      "password": "password1"
+    }
+  ]
+}

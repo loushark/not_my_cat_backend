@@ -17,7 +17,7 @@ const connect = async () => {
   }
 }
 
-const connection = async () => {
+const connection = () => {
   return mongoose.connection.db
 }
 

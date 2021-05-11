@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
   res.status(200).send()
 })
 
-app.listen(8082, console.log('Sever is running on port 8082'))
+const port = process.env.PORT || 8082;
+
+app.listen(port, console.log(`Sever is running on port ${port}`))
 
 module.exports = app;

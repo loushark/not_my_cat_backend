@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const User = require('../../models/user');
 
 router.get('/', (req, res) => {
@@ -8,6 +7,7 @@ router.get('/', (req, res) => {
   .then(users => {
     res.status(200).json(users)
   })
+  .catch(error => res.json(error))
 });
 
 router.get('/:username', (req, res) => {
@@ -20,9 +20,7 @@ router.get('/:username', (req, res) => {
       res.status(404).json({ message: "User not found" })
     }
   })
-  // .catch(error => {
-  //   res.status(404).json(error)
-  // })
+  .catch(error => res.json(error))
 });
 
 router.post('/', (req, res) => {
@@ -30,9 +28,7 @@ router.post('/', (req, res) => {
   .then(user => {
     res.status(201).json(user)
   })
-  .catch(error => {
-    res.status(500).json(error)
-  })
+  .catch(error => res.status(500).json(error))
 });
 
 module.exports = router;
