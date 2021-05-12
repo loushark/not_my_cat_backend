@@ -12,7 +12,25 @@ describe('POST /api/login', () => {
             "password": `${testData.userData[0].password}`})
     .then((response) => {
       expect(response.status).toEqual(200)
-      expect(response.body).toEqual(expect.objectContaining( { accessToken }))
+      expect(response.body.accessToken).toBeDefined()
+    })
+  })
+
+  it('Returns status 401 and a message if the user id is incorrect', async () => {
+    await request(app).post('/api/login')
+    .send({ "_id": "notauser", "password": "password1" })
+    .then((response) => {
+      expect(response.status).toEqual(401)
+      expect(response.body.message).toEqual( "Username or password incorrect" )
+    })
+  })
+
+  it('Returns status 401 and a message if the user password is incorrect', async () => {
+    await request(app).post('/api/login')
+    .send({ "_id": `${testData.userData[0]._id}`, "password": "notmypassword" })
+    .then((response) => {
+      expect(response.status).toEqual(401)
+      expect(response.body.message).toEqual( "Username or password incorrect" )
     })
   })
 })
