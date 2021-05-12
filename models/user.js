@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
+mongoose.set('useCreateIndex', true)
 
 const userSchema = new mongoose.Schema({
   _id: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   email: {
     type: String,
@@ -21,16 +23,15 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-userSchema.pre(
-  'save',
-  async () => {
-    const user = this;
-    const hash = await bcrypt.hash(this.password, 10);
 
-    this.password = hash;
-    next();
+userSchema.pre("save", function(next) {
+  const user = this;
+  if(!user.isModified("password")) {
+      return next();
   }
-);
+  user.password = bcrypt.hashSync(user.password, 10);
+  next();
+});
 
 userSchema.methods.isValidPassword = async (password) => {
   const user = this;

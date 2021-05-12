@@ -29,7 +29,7 @@ describe('GET /api/users/:_id', () => {
     .then((response) => {
       expect(response.status).toEqual(200)
       expect(response.body).toEqual(expect.objectContaining( { "_id": `${testData.userData[0]._id}`,
-                                                               "password": `${testData.userData[0].password}` }))
+                                                               "email": `${testData.userData[0].email}` }))
     })
   })
 
@@ -48,7 +48,7 @@ describe('POST /api/users', () => {
     .send(postData)
     .then((response) => {
       expect(response.status).toEqual(201)
-      expect(response.body).toEqual(expect.objectContaining(postData))
+      expect(response.body).toEqual(expect.objectContaining( { "email": `${postData.email}` }))
     })
   })
 
