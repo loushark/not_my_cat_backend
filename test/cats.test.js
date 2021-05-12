@@ -29,6 +29,13 @@ describe('Get /api/cats/:user_id', () => {
       expect(response.body[0]).toEqual(expect.objectContaining( { "catName": `${testData.catData[0].catName}` }))
     })
   })
+  it('return status 404 and error message when the cat is not found', async () => {
+    await request(app).get('/api/cats/doglover10330')
+    .then((response) => {
+      expect(response.status).toEqual(404)
+      expect(response.body.message).toEqual("No cats found")
+    })
+  })
 })
 
 describe('POST /api/cats', () => {
