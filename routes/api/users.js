@@ -11,9 +11,9 @@ router.get('/', (req, res) => {
   .catch(error => res.json(error))
 });
 
-// GET /api/users/:username  -returns a user of the specified username
-router.get('/:username', (req, res) => {
-  User.findOne({ username: req.params.username })
+// GET /api/users/:_id  -returns a user of the specified _id
+router.get('/:_id', (req, res) => {
+  User.findOne({ _id: req.params._id })
   .then(user => {
     if (user) {
       res.status(200).json(user)

@@ -8,7 +8,7 @@ testSetup()
 
 // data for post operations
 let postData = {
-                "username": "catlover69",
+                "_id": "catlover69",
                 "email": "99cats@notyours.com",
                 "password": "password1",
                 }
@@ -18,17 +18,17 @@ describe('GET /api/users', () => {
     await request(app).get('/api/users')
     .then((response) => {
       expect(response.status).toEqual(200)
-      expect(response.body[0]).toEqual(expect.objectContaining( { "username": `${testData.userData[0].username}` }))
+      expect(response.body[0]).toEqual(expect.objectContaining( { "_id": `${testData.userData[0]._id}` }))
     })
   })
 })
 
-describe('GET /api/users/:username', () => {
+describe('GET /api/users/:_id', () => {
   it('returns status 200 and a specific user object', async () => {
-    await request(app).get(`/api/users/${testData.userData[0].username}`)
+    await request(app).get(`/api/users/${testData.userData[0]._id}`)
     .then((response) => {
       expect(response.status).toEqual(200)
-      expect(response.body).toEqual(expect.objectContaining( { "username": `${testData.userData[0].username}`,
+      expect(response.body).toEqual(expect.objectContaining( { "_id": `${testData.userData[0]._id}`,
                                                                "password": `${testData.userData[0].password}` }))
     })
   })
@@ -54,7 +54,7 @@ describe('POST /api/users', () => {
 
   it('return status 500 and error message if the user cannot be created', async () => {
     await request(app).post('/api/users')
-    .send({ "username": "catlover69"} )
+    .send({ "_id": "catlover69"} )
     .then((response) => {
       expect(response.status).toEqual(500)
       expect(response.body).toEqual(expect.objectContaining( { "_message": "User validation failed" }))

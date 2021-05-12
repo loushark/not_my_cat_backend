@@ -1,22 +1,22 @@
 {
   "userData": [
     {
-      "username": "catperson",
+      "_id": "catperson",
       "email": "catperson@notyours.com",
       "password": "password1"
     },
     {
-      "username": "ilikecats",
+      "_id": "ilikecats",
       "email": "ilikecats@notyours.com",
       "password": "password1"
     },
     {
-      "username": "showmethecats",
+      "_id": "showmethecats",
       "email": "showmethecats@notyours.com",
       "password": "password1"
     },
     {
-      "username": "wheresthatcat",
+      "_id": "wheresthatcat",
       "email": "wheresthatcat@notyours.com",
       "password": "password1"
     }
@@ -24,23 +24,23 @@
   "catData": [
     {
       "catName": "Sooty",
-      "user_id": "1"
+      "user_id": "catperson"
     },
     {
       "catName": "Felix",
-      "user_id": "1"
+      "user_id": "catperson"
     },
     {
       "catName": "Alfie",
-      "user_id": "1"
+      "user_id": "ilikecats"
     },
     {
       "catName": "Misty",
-      "user_id": "1"
+      "user_id": "ilikecats"
     },
     {
       "catName": "Molly",
-      "user_id": "1"
+      "user_id": "showmethecats"
     }
   ]
 }

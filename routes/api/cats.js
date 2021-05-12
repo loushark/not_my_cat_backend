@@ -26,5 +26,6 @@ router.post('/', (req, res) => {
   .then(cat => {
     res.status(201).json(cat)
   })
+  .catch(error => res.status(500).json(error))
 })
 module.exports = router;

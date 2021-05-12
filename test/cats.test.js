@@ -8,7 +8,7 @@ testSetup()
 
 let postData = {
   "catName": "Fluff",
-  "user_id": "1"
+  "user_id": `${testData.userData[0]._id}`
 }
 
 describe('Get /api/cats', () => {
@@ -45,6 +45,15 @@ describe('POST /api/cats', () => {
     .then((response) => {
       expect(response.status).toEqual(201)
       expect(response.body).toEqual(expect.objectContaining(postData))
+    })
+  })
+
+  it('return status 500 and error message if the cat cannot be created', async () => {
+    await request(app).post('/api/cats')
+    .send({ "catName": "NoUserCat"} )
+    .then((response) => {
+      expect(response.status).toEqual(500)
+      expect(response.body).toEqual(expect.objectContaining( { "_message": "Cat validation failed" }))
     })
   })
 })
