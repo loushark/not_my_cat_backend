@@ -28,7 +28,7 @@ describe('GET /api/users/:username', () => {
     await request(app).get(`/api/users/${testData.userData[0].username}`)
     .then((response) => {
       expect(response.status).toEqual(200)
-      expect(response.body).toEqual(expect.objectContaining( { "username": `${testData.userData[0].username}`, 
+      expect(response.body).toEqual(expect.objectContaining( { "username": `${testData.userData[0].username}`,
                                                                "password": `${testData.userData[0].password}` }))
     })
   })

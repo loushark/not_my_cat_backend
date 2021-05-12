@@ -7,12 +7,23 @@ const testData = require('../test/helper/testData.json')
 testSetup()
 
 let postData = {
-  "catName": "Fluff"
+  "catName": "Fluff",
+  "user_id": "1"
 }
 
 describe('Get /api/cats', () => {
   it('returns status code 200 and an array of cats', async () => {
     await request(app).get('/api/cats')
+    .then((response) => {
+      expect(response.status).toEqual(200)
+      expect(response.body[0]).toEqual(expect.objectContaining( { "catName": `${testData.catData[0].catName}` }))
+    })
+  })
+})
+
+describe('Get /api/cats/:user_id', () => {
+  it('returns a specific cat by it\'s owner', async () => {
+    await request(app).get(`/api/cats/${testData.catData[0].user_id}`)
     .then((response) => {
       expect(response.status).toEqual(200)
       expect(response.body[0]).toEqual(expect.objectContaining( { "catName": `${testData.catData[0].catName}` }))

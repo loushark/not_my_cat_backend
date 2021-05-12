@@ -1,4 +1,4 @@
-{ 
+{
   "userData": [
     {
       "username": "catperson",
@@ -23,19 +23,24 @@
   ],
   "catData": [
     {
-      "catName": "Sooty"
+      "catName": "Sooty",
+      "user_id": "1"
     },
     {
-      "catName": "Felix"
+      "catName": "Felix",
+      "user_id": "1"
     },
     {
-      "catName": "Alfie"
+      "catName": "Alfie",
+      "user_id": "1"
     },
     {
-      "catName": "Misty"
+      "catName": "Misty",
+      "user_id": "1"
     },
     {
-      "catName": "Molly"
+      "catName": "Molly",
+      "user_id": "1"
     }
   ]
 }

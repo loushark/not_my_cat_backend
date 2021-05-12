@@ -5,12 +5,16 @@ const catSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  user_id: {
+    type: String,
+    required: true
+  },
   lastSpotted: {
     type: Date,
     default: Date.now
   },
   dateAdded: {
-    type: Date, 
+    type: Date,
     default: Date.now
   }
 });
