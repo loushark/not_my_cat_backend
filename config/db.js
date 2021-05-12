@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
 
+const env = () => {
+  if (process.env.NODE_ENV === "test") {
+    return process.env.MONGO_URI_TEST
+  }
+  else if (process.env.NODE_ENV === "dev") {
+    return process.env.MONGO_URI_DEV
+  }
+}
+
+
 // connects to the mongodb using the uri in the .env 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, 
+    await mongoose.connect(env(),
     {
       useNewUrlParser: true,
       useUnifiedTopology: true

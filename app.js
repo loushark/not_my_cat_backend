@@ -12,13 +12,16 @@ const db = require('./config/db')
 const usersRoute = require('./routes/api/users')
 
 // middleware for parsing json payloads
+app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
 // assign url to users routes
 app.use('/api/users', usersRoute)
 
 // connect to mongoDB
-db.connect();
+if (process.env.NODE_ENV !== "test") {
+  db.connect();
+}
 
 // test route
 app.get('/', (req, res) => {
@@ -27,6 +30,10 @@ app.get('/', (req, res) => {
 
 // assign the const port 
 const port = process.env.PORT || 8082;
+
+app.on('listening', () => {
+  console.log('Server already running')
+})
 
 // server listens on port
 app.listen(port, console.log(`Sever is running on port ${port}`))
