@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// determines the env for the connection
 const env = () => {
   if (process.env.NODE_ENV === "test") {
     return process.env.MONGO_URI_TEST
@@ -8,7 +9,6 @@ const env = () => {
     return process.env.MONGO_URI_DEV
   }
 }
-
 
 // connects to the mongodb using the uri in the .env 
 const connect = async () => {

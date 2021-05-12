@@ -20,5 +20,22 @@
       "email": "wheresthatcat@notyours.com",
       "password": "password1"
     }
+  ],
+  "catData": [
+    {
+      "catName": "Sooty"
+    },
+    {
+      "catName": "Felix"
+    },
+    {
+      "catName": "Alfie"
+    },
+    {
+      "catName": "Misty"
+    },
+    {
+      "catName": "Molly"
+    }
   ]
 }

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest --verbose --colors --detectOpenHandles",
     "test:watch": "cross-env NODE_ENV=test jest --watch",
     "test:coverage": "cross-env NODE_ENV=test jest --coverage --colors"
   },
