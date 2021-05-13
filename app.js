@@ -1,6 +1,7 @@
 // pull in express and assign to 'app'
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 // pull in jsonwebtoken
 const jwt = require('jsonwebtoken')
@@ -20,12 +21,13 @@ const authRoute = require('./routes/api/auth')
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
+app.use(cors());
 // assign url to routes
 app.use('/api/users', usersRoute)
 app.use('/api/cats', catsRoute)
 app.use('/api/', authRoute)
 
-// assign the const port 
+// assign the const port
 const port = process.env.PORT || 8082;
 
 // only happen if env not test
