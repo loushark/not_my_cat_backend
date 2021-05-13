@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken')
 
 router.post('/login', (req, res) => {
-  User.findById(req.body._id)
+  User.findById(req.body.username)
   .then(user => {
     if (user === null) {
       res.status(401).json({ message: "Username or password incorrect"})

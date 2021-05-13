@@ -3,9 +3,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-// pull in jsonwebtoken
-const jwt = require('jsonwebtoken')
-
 // pull in dotenv so it can read our .env file
 require('dotenv/config')
 

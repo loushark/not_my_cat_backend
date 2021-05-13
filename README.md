@@ -61,6 +61,8 @@
 ### model/user.js
 
 - A `mongoose` schema object that defines the user model in our case. the mongoose documentation helps with how we can define our attributes.
+- The function `userSchema.pre("save")` allows us to do things to data before it is saved to the database, in this instance we are gonna encrypt the password with `Bcrypt`.
+- The function `userSchema.methods.isValidPassword()` is used to check the password for when the user wants to login or authenticate. It returns a `boolean`.
 
 ### config/db.js
 
@@ -72,3 +74,4 @@
 - This helper file allows the tests to connect to the database use a `beforeAll` and `afterAll` function. 
 - Also there are `beforeEach` and `afterEach` functions that create stand up test data and tear it down so that each of the tests can be carried out in a clean environment. 
 - This file calls on `testData.json` that contains the data for the test database seeding.
+
