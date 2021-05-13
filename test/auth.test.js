@@ -8,7 +8,7 @@ testSetup()
 describe('POST /api/login', () => {
   it('Returns a jwt with successful login', async () => {
     await request(app).post('/api/login')
-    .send({ "_id": `${testData.userData[0]._id}`,
+    .send({ "username": `${testData.userData[0]._id}`,
             "password": `${testData.userData[0].password}`})
     .then((response) => {
       expect(response.status).toEqual(200)
