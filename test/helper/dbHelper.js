@@ -19,7 +19,8 @@ const testSetup = () => {
       await request(app).post('/api/users').send(testData.userData[i])
       }
     for (let i = 0; i < testData.catData.length; i ++) {
-      await request(app).post('/api/cats').send(testData.catData[i])
+      let accessData = 0
+      await request(app).post('/api/cats').send({postData: testData.catData[i], accessToken: accessData})
       }
   })
 

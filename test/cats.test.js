@@ -2,6 +2,7 @@ const request = require('supertest');
 const app = require('../app')
 const testSetup = require('./helper/dbHelper')
 const testData = require('../test/helper/testData.json')
+const jwt = require('jsonwebtoken')
 
 // pulls in the testHelper functions (beforeAll, beforeEach etc)
 testSetup()
@@ -43,8 +44,9 @@ describe('Get /api/cats/:user_id', () => {
 
 describe('POST /api/cats', () => {
   it('returns status code 201 and the cat object upon creation', async () => {
+    const accessToken = jwt.sign({ username: "catlover69" }, process.env.TOKEN_SECRET)
     await request(app).post('/api/cats')
-    .send(postData)
+    .send({postData, accessToken})
     .then((response) => {
       expect(response.status).toEqual(201)
       expect(response.body).toEqual(expect.objectContaining(postData))
