@@ -2,6 +2,7 @@ const db = require('../../config/db')
 const app = require('../../app');
 const request = require('supertest');
 const testData = require('./testData.json')
+const jwt = require('jsonwebtoken')
 
 const testSetup = () => {
 
@@ -18,8 +19,8 @@ const testSetup = () => {
     for (let i = 0; i < testData.userData.length; i ++) {
       await request(app).post('/api/users').send(testData.userData[i])
       }
+    let accessData = jwt.sign({ username: "catperson" }, process.env.TOKEN_SECRET)
     for (let i = 0; i < testData.catData.length; i ++) {
-      let accessData = 0
       await request(app).post('/api/cats').send({postData: testData.catData[i], accessToken: accessData})
       }
   })

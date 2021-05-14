@@ -54,8 +54,9 @@ describe('POST /api/cats', () => {
   })
 
   it('return status 500 and error message if the cat cannot be created', async () => {
+    const accessToken = jwt.sign({ username: "catlover69" }, process.env.TOKEN_SECRET)
     await request(app).post('/api/cats')
-    .send({ "catName": "NoUserCat"} )
+    .send({ postData:{ "catName": "NoUserCat"}, accessToken } )
     .then((response) => {
       expect(response.status).toEqual(500)
       expect(response.body).toEqual(expect.objectContaining( { "_message": "Cat validation failed" }))
