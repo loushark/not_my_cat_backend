@@ -24,23 +24,38 @@
   "catData": [
     {
       "catName": "Sooty",
-      "user_id": "catperson"
+      "user_id": "catperson",
+      "cattitude": 7,
+      "floof": 10,
+      "chonk": 4
     },
     {
       "catName": "Felix",
-      "user_id": "catperson"
+      "user_id": "catperson",
+      "cattitude": 7,
+      "floof": 10,
+      "chonk": 4
     },
     {
       "catName": "Alfie",
-      "user_id": "ilikecats"
+      "user_id": "ilikecats",
+      "cattitude": 7,
+      "floof": 10,
+      "chonk": 4
     },
     {
       "catName": "Misty",
-      "user_id": "ilikecats"
+      "user_id": "ilikecats",
+      "cattitude": 7,
+      "floof": 10,
+      "chonk": 4
     },
     {
       "catName": "Molly",
-      "user_id": "showmethecats"
+      "user_id": "showmethecats",
+      "cattitude": 7,
+      "floof": 10,
+      "chonk": 4
     }
   ]
 }

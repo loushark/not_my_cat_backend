@@ -2,13 +2,17 @@ const request = require('supertest');
 const app = require('../app')
 const testSetup = require('./helper/dbHelper')
 const testData = require('../test/helper/testData.json')
+const jwt = require('jsonwebtoken')
 
 // pulls in the testHelper functions (beforeAll, beforeEach etc)
 testSetup()
 
 let postData = {
   "catName": "Fluff",
-  "user_id": `${testData.userData[0]._id}`
+  "user_id": `${testData.userData[0]._id}`,
+  "cattitude": 7,
+  "floof": 10,
+  "chonk": 4
 }
 
 describe('Get /api/cats', () => {
@@ -40,8 +44,9 @@ describe('Get /api/cats/:user_id', () => {
 
 describe('POST /api/cats', () => {
   it('returns status code 201 and the cat object upon creation', async () => {
+    const accessToken = jwt.sign({ username: "catlover69" }, process.env.TOKEN_SECRET)
     await request(app).post('/api/cats')
-    .send(postData)
+    .send({postData, accessToken})
     .then((response) => {
       expect(response.status).toEqual(201)
       expect(response.body).toEqual(expect.objectContaining(postData))
@@ -49,8 +54,9 @@ describe('POST /api/cats', () => {
   })
 
   it('return status 500 and error message if the cat cannot be created', async () => {
+    const accessToken = jwt.sign({ username: "catlover69" }, process.env.TOKEN_SECRET)
     await request(app).post('/api/cats')
-    .send({ "catName": "NoUserCat"} )
+    .send({ postData:{ "catName": "NoUserCat"}, accessToken } )
     .then((response) => {
       expect(response.status).toEqual(500)
       expect(response.body).toEqual(expect.objectContaining( { "_message": "Cat validation failed" }))

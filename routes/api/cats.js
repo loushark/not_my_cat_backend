@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Cat = require('../../models/cat');
+const jwt = require('jsonwebtoken')
 
 router.get('/', (req, res) => {
   Cat.find()
@@ -22,11 +23,17 @@ router.get('/:user_id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  Cat.create(req.body)
-  .then(cat => {
-    res.status(201).json(cat)
-  })
-  .catch(error => res.status(500).json(error))
+  jwt.verify(req.body.accessToken, process.env.TOKEN_SECRET, (err, verifiedUser) => {
+      if (err){
+        res.status(500).json(err)
+      } else {
+        Cat.create(req.body.postData)
+        .then(cat => {
+          res.status(201).json(cat)
+        })
+        .catch(err => {res.status(500).json(err)})
+      }
+    })
 })
 
 module.exports = router;
