@@ -1,7 +1,6 @@
 // pull in express and assign to 'app'
 const express = require('express');
 const app = express();
-const cors = require('cors');
 
 // pull in dotenv so it can read our .env file
 require('dotenv/config')
@@ -22,7 +21,6 @@ app.use(cors())
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 
-app.use(cors());
 // assign url to routes
 app.use('/api/users', usersRoute)
 app.use('/api/cats', catsRoute)
