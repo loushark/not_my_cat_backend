@@ -11,7 +11,7 @@ router.post('/login', (req, res) => {
     }
     if (user.isValidPassword(req.body.password)) {
       const accessToken = jwt.sign({ username: user._id }, process.env.TOKEN_SECRET)
-      res.status(200).json({ accessToken })
+      res.status(200).json({ accessToken, user: `${user._id}` })
     } else {
       res.status(401).json({ message: "Username or password incorrect"})
     }

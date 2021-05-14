@@ -14,6 +14,10 @@ const usersRoute = require('./routes/api/users')
 const catsRoute = require('./routes/api/cats')
 const authRoute = require('./routes/api/auth')
 
+// enables cors for all routes
+const cors = require('cors')
+app.use(cors())
+
 // middleware for parsing json payloads
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
