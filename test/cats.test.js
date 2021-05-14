@@ -8,7 +8,10 @@ testSetup()
 
 let postData = {
   "catName": "Fluff",
-  "user_id": `${testData.userData[0]._id}`
+  "user_id": `${testData.userData[0]._id}`,
+  "cattitude": 7,
+  "floof": 10,
+  "chonk": 4
 }
 
 describe('Get /api/cats', () => {
