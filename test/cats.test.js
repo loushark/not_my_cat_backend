@@ -62,4 +62,14 @@ describe('POST /api/cats', () => {
       expect(response.body).toEqual(expect.objectContaining( { "_message": "Cat validation failed" }))
     })
   })
+
+  describe('DELETE /api/cats/:catName', () => {
+    it('deletes the cat entry of the specified cat name', async () => {
+      await request(app).delete('/api/cats/Sooty')
+      .then((response) => {
+        expect(response.status).toEqual(200)
+        expect(response.body).toEqual(expect.objectContaining( { "deletedCount": 1 } ))
+      })
+    })
+  })
 })

@@ -25,15 +25,25 @@ router.get('/:user_id', (req, res) => {
 router.post('/', (req, res) => {
   jwt.verify(req.body.accessToken, process.env.TOKEN_SECRET, (err, verifiedUser) => {
       if (err){
-        res.status(500).json({err, "message": "authentication error" })
+        res.status(500).json(err)
       } else {
         Cat.create(req.body.postData)
         .then(cat => {
           res.status(201).json(cat)
         })
-        .catch(err => {res.status(500).json({err, "message": "database error" })})
+        .catch(err => {res.status(500).json(err)})
       }
     })
+})
+
+router.delete('/:catName', (req, res) => {
+  Cat.remove({ catName: req.params.catName })
+  .then(cat => {
+    res.status(200).json(cat)
+  })
+  .catch(err => {
+    res.status(500).json(err)
+  })
 })
 
 module.exports = router;
