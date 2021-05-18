@@ -31,6 +31,12 @@ const catSchema = new mongoose.Schema({
   },
   image: {
     type: String,
+  },
+  longitude: {
+    type: Number
+  },
+  latitude: {
+    type: Number
   }
 });
 
