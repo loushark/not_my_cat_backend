@@ -33,10 +33,10 @@ const catSchema = new mongoose.Schema({
     type: String,
   },
   position: {
-    lng: {
+    lat: {
       type: Number
     },
-    lat: {
+    lng: {
       type: Number
     }
   }
