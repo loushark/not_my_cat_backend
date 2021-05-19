@@ -46,4 +46,27 @@ router.delete('/:catName', (req, res) => {
   })
 })
 
+
+router.put('/:catName', (req, res) => {
+  Cat.find({ catName: req.params.catName })
+  .then(cat => {
+    cat.wins = req.body.wins,
+    cat.timesSpotted = req.body.timesSpotted,
+    res.status(200).json(cat)
+  })
+  .catch(err => {
+    res.status(500).json(err)
+  })
+})
+
+
+//  const user = getUser(req.params.userId)
+//  if (!user) return res.status(404).json({})
+//  user.name = req.body.name
+//  res.json(user)
+// })
+
+
+
+
 module.exports = router;
