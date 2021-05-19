@@ -87,19 +87,12 @@ describe('POST /api/cats', () => {
 
   describe('PUT /api/cats/:catName', () => {
     it('updates the wins by 1', async () => {
-      await request(app).put('/api/cats/Molly',{
-        "catName": "Molly",
-        "user_id": "showmethecats",
-        "cattitude": 7,
-        "floof": 10,
-        "chonk": 4,
-        "wins": 2,
-        "timesSpotted": 1
-      })
+      await request(app).put('/api/cats/Molly')
+      .send({postData2})
       .then((response) => {
-        console.log(request.body)
-        console.log(response.body)
-        expect(response.body.wins).toEqual(2)
+        console.log(request)
+        console.log(response)
+        expect(response.body.timesSpotted).toEqual(2)
       })
     })
   })

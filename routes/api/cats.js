@@ -50,14 +50,8 @@ router.delete('/:catName', (req, res) => {
 router.put('/:catName', (req, res) => {
   Cat.findOneAndUpdate(
     { catName: req.params.catName },
-    {
-      $set: {
-         wins: req.body.wins
-      }
-    },
-    {
-      upsert: true
-    }
+    { timesSpotted: req.body.timesSpotted,
+      wins: req.body.wins }
   )
   .then(cat => {
     res.status(200).json(cat)
