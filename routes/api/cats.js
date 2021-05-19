@@ -37,7 +37,7 @@ router.post('/', (req, res) => {
 })
 
 router.delete('/:catName', (req, res) => {
-  Cat.remove({ catName: req.params.catName })
+  Cat.deleteOne({ catName: req.params.catName })
   .then(cat => {
     res.status(200).json(cat)
   })
