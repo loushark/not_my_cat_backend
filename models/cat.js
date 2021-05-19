@@ -39,6 +39,12 @@ const catSchema = new mongoose.Schema({
     lng: {
       type: Number
     }
+  },
+  timesSpotted: {
+    type: Number
+  },
+  wins: {
+    type: Number
   }
 });
 

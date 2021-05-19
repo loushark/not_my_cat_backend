@@ -46,4 +46,20 @@ router.delete('/:catName', (req, res) => {
   })
 })
 
+
+router.put('/:catName', (req, res) => {
+  Cat.findOneAndUpdate(
+    { catName: req.params.catName },
+    { timesSpotted: req.body.timesSpotted,
+      wins: req.body.wins }
+  )
+  .then(cat => {
+    res.status(200).json(cat)
+  })
+  .catch(err => {
+    res.status(500).json(err)
+  })
+});
+
+
 module.exports = router;
