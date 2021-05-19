@@ -48,16 +48,24 @@ router.delete('/:catName', (req, res) => {
 
 
 router.put('/:catName', (req, res) => {
-  Cat.find({ catName: req.params.catName })
+  Cat.findOneAndUpdate(
+    { catName: req.params.catName },
+    {
+      $set: {
+         wins: req.body.wins
+      }
+    },
+    {
+      upsert: true
+    }
+  )
   .then(cat => {
-    cat.wins = req.body.wins,
-    cat.timesSpotted = req.body.timesSpotted,
     res.status(200).json(cat)
   })
   .catch(err => {
     res.status(500).json(err)
   })
-})
+});
 
 
 //  const user = getUser(req.params.userId)

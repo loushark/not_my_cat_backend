@@ -12,7 +12,19 @@ let postData = {
   "user_id": `${testData.userData[0]._id}`,
   "cattitude": 7,
   "floof": 10,
-  "chonk": 4
+  "chonk": 4,
+  "wins": 2,
+  "timesSpotted": 3
+}
+
+let postData2 = {
+  "catName": "Molly",
+  "user_id": "showmethecats",
+  "cattitude": 7,
+  "floof": 10,
+  "chonk": 4,
+  "wins": 2,
+  "timesSpotted": 1
 }
 
 describe('Get /api/cats', () => {
@@ -69,6 +81,25 @@ describe('POST /api/cats', () => {
       .then((response) => {
         expect(response.status).toEqual(200)
         expect(response.body).toEqual(expect.objectContaining( { "deletedCount": 1 } ))
+      })
+    })
+  })
+
+  describe('PUT /api/cats/:catName', () => {
+    it('updates the wins by 1', async () => {
+      await request(app).put('/api/cats/Molly',{
+        "catName": "Molly",
+        "user_id": "showmethecats",
+        "cattitude": 7,
+        "floof": 10,
+        "chonk": 4,
+        "wins": 2,
+        "timesSpotted": 1
+      })
+      .then((response) => {
+        console.log(request.body)
+        console.log(response.body)
+        expect(response.body.wins).toEqual(2)
       })
     })
   })

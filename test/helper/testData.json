@@ -55,7 +55,9 @@
       "user_id": "showmethecats",
       "cattitude": 7,
       "floof": 10,
-      "chonk": 4
+      "chonk": 4,
+      "wins": 1,
+      "timesSpotted": 1
     }
   ]
 }
