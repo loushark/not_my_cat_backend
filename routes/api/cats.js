@@ -24,16 +24,16 @@ router.get('/:user_id', (req, res) => {
 
 router.post('/', (req, res) => {
   jwt.verify(req.body.accessToken, process.env.TOKEN_SECRET, (err, verifiedUser) => {
-      if (err){
-        res.status(500).json(err)
-      } else {
-        Cat.create(req.body.postData)
-        .then(cat => {
-          res.status(201).json(cat)
-        })
-        .catch(err => {res.status(500).json(err)})
-      }
-    })
+    if (err){
+      res.status(500).json(err)
+    } else {
+      Cat.create(req.body.postData)
+      .then(cat => {
+        res.status(201).json(cat)
+      })
+      .catch(err => {res.status(500).json(err)})
+    }
+  })
 })
 
 router.delete('/:catName', (req, res) => {
@@ -51,7 +51,8 @@ router.put('/:catName', (req, res) => {
   Cat.findOneAndUpdate(
     { catName: req.params.catName },
     { timesSpotted: req.body.timesSpotted,
-      wins: req.body.wins }
+      wins: req.body.wins }, 
+    {new: true}
   )
   .then(cat => {
     res.status(200).json(cat)
@@ -60,6 +61,5 @@ router.put('/:catName', (req, res) => {
     res.status(500).json(err)
   })
 });
-
 
 module.exports = router;

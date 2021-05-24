@@ -17,16 +17,6 @@ let postData = {
   "timesSpotted": 3
 }
 
-let postData2 = {
-  "catName": "Molly",
-  "user_id": "showmethecats",
-  "cattitude": 7,
-  "floof": 10,
-  "chonk": 4,
-  "wins": 2,
-  "timesSpotted": 1
-}
-
 describe('Get /api/cats', () => {
   it('returns status code 200 and an array of cats', async () => {
     await request(app).get('/api/cats')
@@ -86,13 +76,12 @@ describe('POST /api/cats', () => {
   })
 
   describe('PUT /api/cats/:catName', () => {
-    it('updates the wins by 1', async () => {
+    it('updates the wins and times spotted to 2', async () => {
       await request(app).put('/api/cats/Molly')
-      .send({postData2})
+      .send({wins: 2, timesSpotted: 2})
       .then((response) => {
-        console.log(request)
-        console.log(response)
         expect(response.body.timesSpotted).toEqual(2)
+        expect(response.body.wins).toEqual(2)
       })
     })
   })
